@@ -1,0 +1,39 @@
+Clinical Trial Patient Tracking – SQL Project
+
+This project is a SQL-based clinical trial data mart built in PostgreSQL using a synthetic hypertension treatment dataset (1,000 patients). It demonstrates how to design a normalized schema, load raw CSV data, and perform advanced analytics such as enrollment trends, adverse event incidence, dropout rates, and event-free survival using SQL.
+
+---
+
+## 🧱 Data Model
+
+Schema: `ct`
+
+Main tables:
+
+- **sites** – trial sites / hospitals
+- **treatments** – treatment arms (Drug A, Drug B, Placebo)
+- **patients** – one row per patient with baseline BP and cholesterol
+- **visits** – visit-level data (here: baseline visit 0)
+- **adverse_events** – one row per patient with any recorded AE
+- **outcomes** – per-patient outcome including event type, dates, and censoring
+- **trial_raw** – staging table for the original CSV
+
+---
+
+## 📂 Project Structure
+
+```text
+01_schema/
+  └─ clinical_trial_schema.sql
+
+02_raw_load/
+  └─ create_trial_raw_and_copy.sql
+
+03_etl/
+  └─ populate_dimension_and_fact_tables.sql
+
+04_analysis/
+  ├─ enrollment.sql
+  ├─ adverse_events.sql
+  ├─ dropouts.sql
+  └─ event_free_survival.sql
